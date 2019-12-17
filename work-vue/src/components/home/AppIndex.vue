@@ -57,5 +57,20 @@
 </script>
 
 <style scoped>
+  .result-title{
+    margin: 0px 40px 0px 40px;
+    text-align: center;
+    color: aqua;
+  }
 
+  .text-container{
+    border-radius: 15px;
+    background-clip: padding-box;
+    margin: 30px auto;
+    width: 350px;
+    padding: 20px 20px 20px 20px;
+    background: #ffffff;
+    border: 1px solid #42b983;
+    box-shadow: 0 0 25px #505458;
+  }
 </style>
