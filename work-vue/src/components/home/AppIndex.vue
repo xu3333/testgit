@@ -73,4 +73,5 @@
     border: 1px solid #42b983;
     box-shadow: 0 0 25px #505458;
   }
+
 </style>
