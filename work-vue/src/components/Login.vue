@@ -90,13 +90,13 @@ export default {
   }
 
   .login_title {
-    margin: 0px auto 40px auto;
+    margin: 0px auto 30px auto;
     text-align: center;
     color: #505458;
   }
 
   .el-form-item{
-    margin: 0 auto 10px auto;
+    margin: 0 auto 15px auto;
   }
 
 </style>
