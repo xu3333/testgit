@@ -11,6 +11,18 @@
         <el-input type="password" v-model="loginForm.password"
                   auto-complete="off" placeholder="密码"/>
       </el-form-item>
+      <el-form-item>
+        <div>
+          <tr>
+            <td>
+              <el-checkbox id="autoLogin" style="width: 100%;background: white">自动登录</el-checkbox>
+            </td>
+            <td>
+              <el-checkbox id="rememberPassword" style="width: 100%;background: white">记住密码</el-checkbox>
+            </td>
+          </tr>
+        </div>
+      </el-form-item>
       <el-form-item style="width: 100%">
         <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录</el-button>
       </el-form-item>
@@ -81,6 +93,10 @@ export default {
     margin: 0px auto 40px auto;
     text-align: center;
     color: #505458;
+  }
+
+  .el-form-item{
+    margin: 0 auto 10px auto;
   }
 
 </style>
