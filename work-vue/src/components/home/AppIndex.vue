@@ -11,7 +11,16 @@
           <el-input type="text" v-model:value="loginForm.password" />
         </el-form-item>
         <el-form-item>
-          <el-button id="btn" type="primary" style="width: 100%;background: #505458;border: none" v-on:click="getName">展示</el-button>
+          <el-input type="text" v-model:value=loginForm.autoLogin.toString() />
+        </el-form-item>
+        <el-form-item>
+          <el-input type="text" v-model:value=loginForm.rememberPassword.toString() />
+        </el-form-item>
+        <el-form-item>
+          <el-button id="btn1" type="primary" style="width: 100%;background: #505458;border: none" v-on:click="getName">展示</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button id="btn2" type="primary" style="width: 100%;background: #505458;border: none" v-on:click="backToLogin">返回</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -25,6 +34,8 @@
           loginForm: {
             username:"",
             password:"",
+            autoLogin:false,
+            rememberPassword:false,
             flag:0
           }
         }
@@ -37,12 +48,16 @@
           if(this.loginForm.flag%2==0){
             this.loginForm.username=user.username
             this.loginForm.password=user.password
-            document.getElementById("btn").innerText="hide"
+            this.loginForm.autoLogin=user.autoLogin
+            this.loginForm.rememberPassword=user.rememberPassword
+            document.getElementById("btn1").innerText="hide"
             this.loginForm.flag++
           }else {
             this.loginForm.username=""
             this.loginForm.password=""
-            document.getElementById("btn").innerText="show"
+            this.loginForm.autoLogin=""
+            this.loginForm.rememberPassword=""
+            document.getElementById("btn1").innerText="show"
             this.loginForm.flag++
           }
 
@@ -50,6 +65,10 @@
           // document.getElementById("name").value="222"
           // this.document.getElementById("name").text="222"
           // this.document.getElementById("name").textContent="222"
+        },
+        backToLogin(){
+          window.localStorage.clear()
+          this.$router.replace({path:"/login"})
         }
       }
 

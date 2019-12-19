@@ -13,6 +13,9 @@
         <el-form-item>
           <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="registe">注册</el-button>
         </el-form-item>
+        <el-form-item>
+          <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="backToLogin">返回</el-button>
+        </el-form-item>
       </el-form>
     </div>
 </template>
@@ -43,6 +46,10 @@
               alert("wrong!")
             }
           })
+        },
+        backToLogin(){
+          window.localStorage.clear()
+          this.$router.replace({path:"/login"})
         }
       }
     }

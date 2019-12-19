@@ -15,10 +15,10 @@
         <div>
           <tr>
             <td>
-              <el-checkbox id="autoLogin" style="width: 100%;background: white">自动登录</el-checkbox>
+              <el-checkbox id="autoLogin" style="width: 100%;background: white" v-model:checked="loginForm.autoLogin">自动登录</el-checkbox>
             </td>
             <td>
-              <el-checkbox id="rememberPassword" style="width: 100%;background: white">记住密码</el-checkbox>
+              <el-checkbox id="rememberPassword" style="width: 100%;background: white" v-model="loginForm.rememberPassword">记住密码</el-checkbox>
             </td>
           </tr>
         </div>
@@ -26,6 +26,7 @@
       <el-form-item style="width: 100%">
         <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录</el-button>
       </el-form-item>
+        <a href="/registe" style="left: 45%;position: relative">注册</a>
     </el-form>
   </body>
 </template>
@@ -34,19 +35,38 @@
 <script>
 export default {
   name: 'Login',
-    data(){
-      return{
-          loginForm:{
-              username:'',
-              password:''
-          },
-      responseResult:[]
+  data(){
+    return{
+        loginForm:{
+          username:'',
+          password:'',
+          autoLogin:false,
+          rememberPassword:false,
+          flag:0
+        },
+    responseResult:[]
+    }
+  },
+
+  mounted:function () {
+    let user=JSON.parse(window.localStorage.getItem("user"))
+    console.log("111")
+    console.log(user)
+    if(user){
+      if(user.autoLogin===true){
+        this.$router.replace({path:"/index"})
       }
-    },
-    methods:{
+      if(user.rememberPassword===true){
+        this.loginForm.username=user.username
+        this.loginForm.password=user.password
+        this.loginForm.rememberPassword=true
+      }
+    }
+  },
+
+  methods:{
       login(){
         let _this=this
-        console.log(this.$store.state)
         this.$axios
             .post('/login',{
                 username: this.loginForm.username,
@@ -54,6 +74,12 @@ export default {
             })
             .then(successResponse=>{
                 if(successResponse.data.code===200){
+                  // if(document.getElementById("autoLogin").checked==true){
+                  //   this.loginForm.autoLogin=true
+                  // }
+                  // if(document.getElementById("rememberPassword").checked==true){
+                  //   this.loginForm.rememberPassword=true
+                  // }
                   _this.$store.commit('login',_this.loginForm)
                   let path=this.$route.query.redirect
                   this.$router.replace({path:path==='/'||path===undefined?'/index':path})
