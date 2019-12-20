@@ -30,9 +30,9 @@ public class RegisterController {
         System.out.println(user.getPassword());
         if(null==user1){
             userService.add(user);
-            return new Result(200);
+            return new Result(200,null);
         }else {
-            return new Result(400);
+            return new Result(400,null);
         }
     }
 }

@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from "../components/Login"
 import AppIndex from "../components/home/AppIndex"
 import Register from "../components/Register";
+import SecondAppIndex from "../components/home/SecondAppIndex";
 
 Vue.use(Router)
 
@@ -26,6 +27,14 @@ export default new Router({
       component: AppIndex,
       meta:{
         requireAuth:true
+      }
+    },
+    {
+      path: '/sindex',
+      name: 'SecondAppIndex',
+      component: SecondAppIndex,
+      meta:{
+        requireAuth: true
       }
     },
     {

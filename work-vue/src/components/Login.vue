@@ -42,7 +42,7 @@ export default {
           password:'',
           autoLogin:false,
           rememberPassword:false,
-          flag:0
+          role:""
         },
     responseResult:[]
     }
@@ -80,6 +80,7 @@ export default {
                   // if(document.getElementById("rememberPassword").checked==true){
                   //   this.loginForm.rememberPassword=true
                   // }
+                  _this.loginForm.role=successResponse.data.role
                   _this.$store.commit('login',_this.loginForm)
                   let path=this.$route.query.redirect
                   this.$router.replace({path:path==='/'||path===undefined?'/index':path})

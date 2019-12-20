@@ -30,9 +30,9 @@ public class LoginController {
         User user=userService.get(username,requestUser.getPassword());
         if(null==user){
             System.out.println("test");
-            return new Result(400);
+            return new Result(400,null);
         }else{
-            return new Result(200);
+            return new Result(200,user.getRole());
         }
     }
 }
