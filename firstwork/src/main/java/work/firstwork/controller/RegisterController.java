@@ -29,7 +29,13 @@ public class RegisterController {
         System.out.println(username);
         System.out.println(user.getPassword());
         if(null==user1){
-            userService.add(user);
+            User user2=user;
+            if(user.getRole().equals("物业")){
+                user2.setRole("0");
+            }else if (user.getRole().equals("业主")){
+                user2.setRole("1");
+            }
+            userService.add(user2);
             return new Result(200,null);
         }else {
             return new Result(400,null);

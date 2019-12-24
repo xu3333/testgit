@@ -7,7 +7,8 @@
         <el-form-item>
           <tr>
             <td>
-              <h4>用户名：</h4>
+<!--              <el-input type="text" value="用户名：" style="width: 100px" readonly="readonly"></el-input>-->
+              <h4 class="username">用户名：</h4>
             </td>
             <el-input type="text" v-model:value="registerForm.username"/>
           </tr>
@@ -15,21 +16,30 @@
         <el-form-item>
           <tr>
             <td>
-              <h4>密码：</h4>
+              <h4 class="password">密码：</h4>
             </td>
             <el-input type="text" v-model:value="registerForm.password"/>
           </tr>
         </el-form-item>
-        <el-form-item class="select">
-          <el-select v-model="choice">
-            <el-option v-for="(x,index) in selection" :key="x.index" :value="x.role">{{x.role}}</el-option>
-          </el-select>
+        <el-form-item>
+          <tr>
+            <td>
+              <h4 class="role">角色：</h4>
+            </td>
+            <el-select v-model="registerForm.role">
+              <el-option v-for="(x,index) in selection" :key="x.index" :value="x.role">{{x.role}}</el-option>
+            </el-select>
+          </tr>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="registe">注册</el-button>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="backToLogin">返回</el-button>
+          <tr>
+            <td>
+              <el-button type="primary" style="width: 80px;background: #505458;border: none;margin-left: 50px" v-on:click="registe">注册</el-button>
+            </td>
+            <td>
+              <el-button type="primary" style="width: 80px;background: #505458;border: none;margin-left: 50px" v-on:click="backToLogin">返回</el-button>
+            </td>
+          </tr>
         </el-form-item>
       </el-form>
     </div>
@@ -42,13 +52,13 @@
         return{
           registerForm:{
             username:"",
-            password:""
+            password:"",
+            role:""
           },
           selection:[
-            {role:"物业",index:0},
+            {role:"物业",index: 0},
             {role:"业主",index: 1}
-          ],
-          choice:""
+          ]
         }
       },
       methods:{
@@ -57,7 +67,8 @@
           this.$axios
             .post('/registe',{
             username:this.registerForm.username,
-            password:this.registerForm.password
+            password:this.registerForm.password,
+            role:this.registerForm.choice
           })
           .then(successResponse=>{
             if(successResponse.data.code===200){
@@ -94,13 +105,18 @@
     box-shadow: 0 0 25px #505458;
   }
 
-  .select{
-    width: 100px;
-    text-align: left;
+  .username,.password,.role{
+    margin: 0px;
+    width: 80px;
+    text-align: right;
   }
 
+  /*.el-form-item{*/
+  /*  margin-bottom: 10px;*/
+  /*}*/
+
   .el-input{
-    width: 200px;
+    width: 250px;
   }
 
   .el-dropdown-link {
