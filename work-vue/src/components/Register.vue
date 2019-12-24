@@ -26,7 +26,7 @@
             <td>
               <h4 class="role">角色：</h4>
             </td>
-            <el-select v-model="registerForm.role">
+            <el-select v-model="registerForm.role" style="width: 130px">
               <el-option v-for="(x,index) in selection" :key="x.index" :value="x.role">{{x.role}}</el-option>
             </el-select>
           </tr>
@@ -37,7 +37,7 @@
               <el-button type="primary" style="width: 80px;background: #505458;border: none;margin-left: 50px" v-on:click="registe">注册</el-button>
             </td>
             <td>
-              <el-button type="primary" style="width: 80px;background: #505458;border: none;margin-left: 50px" v-on:click="backToLogin">返回</el-button>
+              <el-button type="primary" style="width: 80px;background: #505458;border: none;margin-left: 60px" v-on:click="backToLogin">返回</el-button>
             </td>
           </tr>
         </el-form-item>
@@ -68,7 +68,7 @@
             .post('/registe',{
             username:this.registerForm.username,
             password:this.registerForm.password,
-            role:this.registerForm.choice
+            role:this.registerForm.role
           })
           .then(successResponse=>{
             if(successResponse.data.code===200){
@@ -110,10 +110,6 @@
     width: 80px;
     text-align: right;
   }
-
-  /*.el-form-item{*/
-  /*  margin-bottom: 10px;*/
-  /*}*/
 
   .el-input{
     width: 250px;

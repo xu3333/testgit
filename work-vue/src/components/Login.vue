@@ -82,8 +82,12 @@ export default {
                   // }
                   _this.loginForm.role=successResponse.data.role
                   _this.$store.commit('login',_this.loginForm)
+                  // let path=this.$route.query.redirect
+                  // this.$router.replace({path:path==='/'||path===undefined?'/index':path})
                   let path=this.$route.query.redirect
-                  this.$router.replace({path:path==='/'||path===undefined?'/index':path})
+                  console.log('/'+path+'Index')
+                  this.$router.replace({path:'/'+path+'Index'})
+                  console.log('/'+path+'Index')
                 }
             })
             .catch(failResponse=>{

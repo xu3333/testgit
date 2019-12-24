@@ -22,7 +22,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/index',
+      path: '/wuyeIndex',
       name: 'AppIndex',
       component: AppIndex,
       meta:{
@@ -30,7 +30,7 @@ export default new Router({
       }
     },
     {
-      path: '/sindex',
+      path: '/yezhuIndex',
       name: 'SecondAppIndex',
       component: SecondAppIndex,
       meta:{
