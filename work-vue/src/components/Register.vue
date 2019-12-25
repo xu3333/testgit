@@ -86,7 +86,6 @@
     }
 </script>
 
-
 <style scoped>
   .title{
     margin: 0px 40px 0px 40px;
