@@ -43,4 +43,5 @@ export default new Router({
       component: Register
     }
   ]
+
 })
