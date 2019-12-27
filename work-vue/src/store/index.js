@@ -10,7 +10,9 @@ export default new Vuex.Store({
       autoLogin: window.localStorage.getItem('autoLogin'),
       rememberPassword: window.localStorage.getItem('rememberPassword'),
       role:window.localStorage.getItem("role")
-    }
+    },
+    token:sessionStorage.getItem('token'),
+    role: sessionStorage.getItem('role')
   },
   mutations:{
     login(state,user){
