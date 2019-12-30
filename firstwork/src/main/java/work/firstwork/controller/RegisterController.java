@@ -40,5 +40,6 @@ public class RegisterController {
         }else {
             return new Result(400,null);
         }
+
     }
 }
