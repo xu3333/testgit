@@ -33,7 +33,9 @@
 
 
 <script>
-export default {
+  import {myRouter,dynamicRouter} from "../router"
+
+  export default {
   name: 'Login',
   data(){
     return{
@@ -82,12 +84,27 @@ export default {
                   // }
                   _this.loginForm.role=successResponse.data.role
                   _this.$store.commit('login',_this.loginForm)
+                  let dR=new Array()
+                  let front=null
+                  for(let i=0;i<dynamicRouter.length;i++){
+                    console.log(i)
+                    console.log(dynamicRouter.length)
+                    console.log(JSON.parse(this.window.localStorage.getItem('user')).role)
+                    if(window.localStorage.getItem("role").toString()===dynamicRouter[i].meta.role.toString()){
+                      console.log(333)
+                      dR.push(dynamicRouter[i])
+                      front=dynamicRouter[i].meta.front
+                    }else {
+                      console.log(444)
+                    }
+                  }
+                  this.$router.addRoutes(dR)
+                  console.log("222")
+                  console.log(front+'Index')
+                  let path=front+"Index"
+                  this.$router.replace({path:path})
                   // let path=this.$route.query.redirect
                   // this.$router.replace({path:path==='/'||path===undefined?'/index':path})
-                  let path=this.$route.query.redirect
-                  console.log('/'+path+'Index')
-                  this.$router.replace({path:'/'+path+'Index'})
-                  console.log('/'+path+'Index')
                 }
             })
             .catch(failResponse=>{

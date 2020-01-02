@@ -8,8 +8,8 @@ import SecondAppIndex from "../components/home/SecondAppIndex"
 
 Vue.use(Router)
 
-const router=new Router({
-  mode:history,
+const myRouter=new Router({
+  mode:'history',
   routes:[
     {
       path:'/',
@@ -28,7 +28,7 @@ const router=new Router({
     }
   ]
 });
-export default router
+export default myRouter
 
 export const dynamicRouter=[
   {
@@ -37,16 +37,18 @@ export const dynamicRouter=[
     component:resolve=>require(['../components/home/AppIndex.vue'],resolve),
     meta:{
       requireAuth:true,
-      role:"0"
+      role:"0",
+      front:"/wuye"
     }
   },
   {
     path: '/yezhuIndex',
-    name: 'SecondIndex',
-    component:resolve => require(['../components/home/SecondIndex.vue'],resolve),
+    name: 'SecondAppIndex',
+    component:resolve => require(['../components/home/SecondAppIndex.vue'],resolve),
     meta: {
       requireAuth: true,
-      role:"1"
+      role:"1",
+      front:"/yezhu"
     }
   }
 ]

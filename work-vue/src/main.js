@@ -19,18 +19,7 @@ Vue.use(ElementUI)
 router.beforeEach((to,from,next) =>{
   if(to.meta.requireAuth){
     if(store.state.user.username){
-      if(store.state.user.role==="0"){
-        console.log("main"+store.state.user.role)
-        next({
-          query:{redirect:'wuye'}
-        })
-      }else if (store.state.user.role==="1"){
-        console.log("main"+store.state.user.role)
-        next({
-          query:{redirect:'yezhu'}
-        })
-      }
-      console.log("main"+store.state.user.role)
+      next()
     }else {
       next({
         path:'login',

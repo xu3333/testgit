@@ -10,23 +10,23 @@ import {router,dynamicRouter} from "./router/index.js";
 export default {
   name: 'App',
   methods:{
-    judgeLogin(){
-      let isLogin=store.state.token
-      if(!isLogin){
-        return this.$router.push('/login')
-      }else {
-        let dR=new Array()
-        for(let i=0;i<dynamicRouter.length;i++){
-          if(dynamicRouter[i].meta.role==store.state.role){
-            dR.push(dynamicRouter[i])
-          }
-        }
-      }
-      this.$router.addRoutes(dR)
-    }
+    // judgeLogin(){
+    //   let isLogin=store.state.token
+    //   if(!isLogin){
+    //     return this.$router.push('/login')
+    //   }else {
+    //     let dR=new Array()
+    //     for(let i=0;i<dynamicRouter.length;i++){
+    //       if(dynamicRouter[i].meta.role==store.state.role){
+    //         dR.push(dynamicRouter[i])
+    //       }
+    //     }
+    //   }
+    //   this.$router.addRoutes(dR)
+    // }
   },
   created() {
-    this.judgeLogin()
+    // this.judgeLogin()
   }
 }
 </script>
