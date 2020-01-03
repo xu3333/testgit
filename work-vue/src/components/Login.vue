@@ -56,7 +56,18 @@
     console.log(user)
     if(user){
       if(user.autoLogin===true){
-        this.$router.replace({path:"/index"})
+        let dR=new Array()
+        let front=null
+        for(let i=0;i<dynamicRouter.length;i++){
+          if(JSON.parse(window.localStorage.getItem('user')).role===dynamicRouter[i].meta.role){
+            dR.push(dynamicRouter[i])
+            front=dynamicRouter[i].meta.front
+          }
+        }
+        this.$router.addRoutes(dR)
+        console.log(front+'Index')
+        let path=front+"Index"
+        this.$router.replace({path:path})
       }
       if(user.rememberPassword===true){
         this.loginForm.username=user.username
@@ -76,30 +87,23 @@
             })
             .then(successResponse=>{
                 if(successResponse.data.code===200){
-                  // if(document.getElementById("autoLogin").checked==true){
-                  //   this.loginForm.autoLogin=true
-                  // }
-                  // if(document.getElementById("rememberPassword").checked==true){
-                  //   this.loginForm.rememberPassword=true
-                  // }
+                  if(document.getElementById("autoLogin").checked==true){
+                    this.loginForm.autoLogin=true
+                  }
+                  if(document.getElementById("rememberPassword").checked==true){
+                    this.loginForm.rememberPassword=true
+                  }
                   _this.loginForm.role=successResponse.data.role
                   _this.$store.commit('login',_this.loginForm)
                   let dR=new Array()
                   let front=null
                   for(let i=0;i<dynamicRouter.length;i++){
-                    console.log(i)
-                    console.log(dynamicRouter.length)
-                    console.log(JSON.parse(this.window.localStorage.getItem('user')).role)
-                    if(window.localStorage.getItem("role").toString()===dynamicRouter[i].meta.role.toString()){
-                      console.log(333)
+                    if(JSON.parse(window.localStorage.getItem('user')).role===dynamicRouter[i].meta.role){
                       dR.push(dynamicRouter[i])
                       front=dynamicRouter[i].meta.front
-                    }else {
-                      console.log(444)
                     }
                   }
                   this.$router.addRoutes(dR)
-                  console.log("222")
                   console.log(front+'Index')
                   let path=front+"Index"
                   this.$router.replace({path:path})
