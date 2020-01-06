@@ -71,7 +71,6 @@
           this.$router.replace({path:"/login"})
         }
       }
-
     }
 </script>
 

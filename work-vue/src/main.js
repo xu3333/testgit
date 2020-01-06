@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import router, {dynamicRouter} from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from "../src/store"
@@ -17,14 +17,41 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 router.beforeEach((to,from,next) =>{
+  // if(to.meta.requireAuth){
+  //   if(store.state.user.username){
+  //     next()
+  //   }else {
+  //     next({
+  //       path:'login',
+  //       query:{redirect:to.fullPath}
+  //     })
+  //   }
+  // }else {
+  //   next()
+  // }
   if(to.meta.requireAuth){
     if(store.state.user.username){
       next()
     }else {
-      next({
-        path:'login',
-        query:{redirect:to.fullPath}
-      })
+      let autoLogin=JSON.parse(window.localStorage.getItem('user')).autoLogin
+      if(!autoLogin){
+        next({
+          path:'login'
+        })
+      }else {
+        let dR=new Array()
+        let front=null
+        for(let i=0;i<dynamicRouter.length;i++){
+          if(JSON.parse(window.localStorage.getItem('user')).role===dynamicRouter[i].meta.role){
+            dR.push(dynamicRouter[i])
+            front=dynamicRouter[i].meta.front
+          }
+        }
+        let path=front+"Index"
+        next({
+          path:path
+        })
+      }
     }
   }else {
     next()

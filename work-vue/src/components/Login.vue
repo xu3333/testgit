@@ -3,11 +3,11 @@
     <el-form class="login-container" label-position="left"
              label-width="0px">
       <h3 class="login_title">系统登录</h3>
-      <el-form-item>
+      <el-form-item prop="username">
         <el-input type="text" v-model="loginForm.username"
                   auto-complete="off" placeholder="账号"/>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="password">
         <el-input type="password" v-model="loginForm.password"
                   auto-complete="off" placeholder="密码"/>
       </el-form-item>
@@ -46,7 +46,25 @@
           rememberPassword:false,
           role:""
         },
-    responseResult:[]
+        rules:{
+          username:[{
+            required:true,
+            message:"请填写用户名",
+            trigger:"blur"
+          },{
+            pattern:/[A-Za-z0-9_\u4e00-\u9fa5]+$/,
+            message: "只允许数字、字母、下划线"
+          }],
+          password:[{
+            required:true,
+            message:"请填写密码",
+            trigger:"blur"
+          },{
+            pattern:/[A-Za-z0-9_\u4e00-\u9fa5]+$/,
+            message: "只允许数字、字母、下划线"
+          }]
+        },
+        responseResult:[]
     }
   },
 

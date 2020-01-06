@@ -4,7 +4,7 @@
         <el-form-item>
           <h1 class="title">注册</h1>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="username">
           <tr>
             <td>
 <!--              <el-input type="text" value="用户名：" style="width: 100px" readonly="readonly"></el-input>-->
@@ -13,7 +13,7 @@
             <el-input type="text" v-model:value="registerForm.username"/>
           </tr>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="password">
           <tr>
             <td>
               <h4 class="password">密码：</h4>
@@ -58,7 +58,25 @@
           selection:[
             {role:"物业",index: 0},
             {role:"业主",index: 1}
-          ]
+          ],
+          rules:{
+            username:[{
+              required:true,
+              message:"请填写用户名",
+              trigger:"blur"
+            },{
+              pattern:/[A-Za-z0-9_\u4e00-\u9fa5]+$/,
+              message: "只允许数字、字母、下划线"
+            }],
+            password:[{
+              required:true,
+              message:"请填写密码",
+              trigger:"blur"
+            },{
+              pattern:/[A-Za-z0-9_\u4e00-\u9fa5]+$/,
+              message: "只允许数字、字母、下划线"
+            }]
+          },
         }
       },
       methods:{
