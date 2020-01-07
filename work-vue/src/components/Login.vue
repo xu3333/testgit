@@ -1,6 +1,6 @@
 <template>
   <body id="poster">
-    <el-form class="login-container" label-position="left"
+    <el-form class="login-container" label-position="left" :rules="rules"
              label-width="0px">
       <h3 class="login_title">系统登录</h3>
       <el-form-item prop="username">
@@ -48,11 +48,11 @@
         },
         rules:{
           username:[{
-            required:true,
+            required:false,
             message:"请填写用户名",
             trigger:"blur"
           },{
-            pattern:/[A-Za-z0-9_\u4e00-\u9fa5]+$/,
+            pattern:/^[A-Za-z0-9_\u4e00-\u9fa5]+$/,
             message: "只允许数字、字母、下划线"
           }],
           password:[{
@@ -60,7 +60,7 @@
             message:"请填写密码",
             trigger:"blur"
           },{
-            pattern:/[A-Za-z0-9_\u4e00-\u9fa5]+$/,
+            pattern:/^[A-Za-z0-9_\u4e00-\u9fa5]+$/,
             message: "只允许数字、字母、下划线"
           }]
         },
