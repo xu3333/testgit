@@ -1,13 +1,12 @@
 <template>
   <body id="poster">
-    <el-form class="login-container" label-position="left" :rules="rules"
-             label-width="0px">
+    <el-form class="login-container" label-position="left" :rules="rules" :model="loginForm">
       <h3 class="login_title">系统登录</h3>
-      <el-form-item prop="username">
+      <el-form-item prop="username" label="账号:" label-width="65px">
         <el-input type="text" v-model="loginForm.username"
                   auto-complete="off" placeholder="账号"/>
       </el-form-item>
-      <el-form-item prop="password">
+      <el-form-item prop="password" label="密码:" label-width="65px">
         <el-input type="password" v-model="loginForm.password"
                   auto-complete="off" placeholder="密码"/>
       </el-form-item>
@@ -48,11 +47,11 @@
         },
         rules:{
           username:[{
-            required:false,
+            required:true,
             message:"请填写用户名",
             trigger:"blur"
           },{
-            pattern:/^[A-Za-z0-9_\u4e00-\u9fa5]+$/,
+            pattern:/^[A-Za-z0-9_]+$/,
             message: "只允许数字、字母、下划线"
           }],
           password:[{
@@ -60,7 +59,7 @@
             message:"请填写密码",
             trigger:"blur"
           },{
-            pattern:/^[A-Za-z0-9_\u4e00-\u9fa5]+$/,
+            pattern:/^[A-Za-z0-9_]+$/,
             message: "只允许数字、字母、下划线"
           }]
         },
@@ -127,6 +126,10 @@
                   this.$router.replace({path:path})
                   // let path=this.$route.query.redirect
                   // this.$router.replace({path:path==='/'||path===undefined?'/index':path})
+                }else {
+                  alert("用户名或密码错误！")
+                  this.loginForm.username=""
+                  this.loginForm.password=""
                 }
             })
             .catch(failResponse=>{

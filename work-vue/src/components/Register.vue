@@ -1,35 +1,36 @@
 <template>
     <div>
-      <el-form class="text-container" label-position="left" label-width="0px">
+      <el-form class="text-container" label-position="left" :rules="rules" :model="registerForm">
         <el-form-item>
           <h1 class="title">注册</h1>
         </el-form-item>
-        <el-form-item prop="username">
-          <tr>
-            <td>
-<!--              <el-input type="text" value="用户名：" style="width: 100px" readonly="readonly"></el-input>-->
-              <h4 class="username">用户名：</h4>
-            </td>
-            <el-input type="text" v-model:value="registerForm.username"/>
-          </tr>
+        <el-form-item prop="username" label-width="80px" label="用户名：" style="text-align: left;">
+<!--          <tr>-->
+<!--            <td>-->
+<!--&lt;!&ndash;              <el-input type="text" value="用户名：" style="width: 100px" readonly="readonly"></el-input>&ndash;&gt;-->
+<!--              <h4 class="username">用户名：</h4>-->
+<!--            </td>-->
+            <el-input type="text" v-model:value="registerForm.username" />
+<!--          </tr>-->
         </el-form-item>
-        <el-form-item prop="password">
-          <tr>
-            <td>
-              <h4 class="password">密码：</h4>
-            </td>
+        <el-form-item prop="password" label-width="80px" label="密码：" style="text-align: left;">
+<!--          <tr>-->
+<!--            <td>-->
+<!--              <h4 class="password">密码：</h4>-->
+<!--            </td>-->
             <el-input type="text" v-model:value="registerForm.password"/>
-          </tr>
+<!--          </tr>-->
         </el-form-item>
-        <el-form-item>
-          <tr>
-            <td>
-              <h4 class="role">角色：</h4>
-            </td>
+        <el-form-item prop="role" label-width="80px" label="角色：" style="text-align: left;">
+<!--          <tr>-->
+<!--            <td>-->
+<!--              <h4 class="role">角色：</h4>-->
+<!--            </td>-->
             <el-select v-model="registerForm.role" style="width: 130px">
+              <el-option aria-selected="false" value="" style="color: black">请选择角色</el-option>
               <el-option v-for="(x,index) in selection" :key="x.index" :value="x.role">{{x.role}}</el-option>
             </el-select>
-          </tr>
+<!--          </tr>-->
         </el-form-item>
         <el-form-item>
           <tr>
@@ -53,7 +54,7 @@
           registerForm:{
             username:"",
             password:"",
-            role:""
+            role:"物业"
           },
           selection:[
             {role:"物业",index: 0},
@@ -65,7 +66,7 @@
               message:"请填写用户名",
               trigger:"blur"
             },{
-              pattern:/[A-Za-z0-9_\u4e00-\u9fa5]+$/,
+              pattern:/[A-Za-z0-9_]+$/,
               message: "只允许数字、字母、下划线"
             }],
             password:[{
@@ -73,8 +74,13 @@
               message:"请填写密码",
               trigger:"blur"
             },{
-              pattern:/[A-Za-z0-9_\u4e00-\u9fa5]+$/,
+              pattern:/[A-Za-z0-9_]+$/,
               message: "只允许数字、字母、下划线"
+            }],
+            role:[{
+              required:true,
+              message:"角色不能为空",
+              trigger:"focus"
             }]
           },
         }
