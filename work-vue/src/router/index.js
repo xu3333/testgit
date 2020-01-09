@@ -5,10 +5,12 @@ import Login from "../components/Login"
 import AppIndex from "../components/home/AppIndex"
 import Register from "../components/Register"
 import SecondAppIndex from "../components/home/SecondAppIndex"
+import wuyeHome from "../components/home/wuyeHome";
+import yezhuHome from "../components/home/yezhuHome";
 
 Vue.use(Router)
 
-const myRouter=new Router({
+const router=new Router({
   mode:'history',
   routes:[
     {
@@ -28,13 +30,26 @@ const myRouter=new Router({
     }
   ]
 });
-export default myRouter
+export default router
 
 export const dynamicRouter=[
   {
-    path:'/wuyeIndex',
-    name:'AppIndex',
-    component:resolve=>require(['../components/home/AppIndex.vue'],resolve),
+    path:'/wuyeHome',
+    name:'WuyeHome',
+    component:wuyeHome,
+    redirect:'/wuyeIndex',
+    children:[
+      {
+        path:'/wuyeIndex',
+        name:'AppIndex',
+        component:resolve=>require(['../components/home/AppIndex.vue'],resolve),
+        meta:{
+          requireAuth:true,
+          role:"0",
+          front:"/wuye"
+        }
+      }
+    ],
     meta:{
       requireAuth:true,
       role:"0",
@@ -42,9 +57,22 @@ export const dynamicRouter=[
     }
   },
   {
-    path: '/yezhuIndex',
-    name: 'SecondAppIndex',
-    component:resolve => require(['../components/home/SecondAppIndex.vue'],resolve),
+    path:'/yezhuHome',
+    name:'yezhuHome',
+    component:yezhuHome,
+    redirect:'/yezhuIndex',
+    children:[
+      {
+        path: '/yezhuIndex',
+        name: 'SecondAppIndex',
+        component:resolve => require(['../components/home/SecondAppIndex.vue'],resolve),
+        meta: {
+          requireAuth: true,
+          role:"1",
+          front:"/yezhu"
+        }
+      }
+    ],
     meta: {
       requireAuth: true,
       role:"1",

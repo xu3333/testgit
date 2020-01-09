@@ -30,6 +30,7 @@ router.beforeEach((to,from,next) =>{
   //   next()
   // }
   if(to.meta.requireAuth){
+    console.log("to:"+to.fullPath)
     if(store.state.user.username){
       next()
     }else {

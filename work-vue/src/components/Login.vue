@@ -116,8 +116,12 @@
                   let front=null
                   for(let i=0;i<dynamicRouter.length;i++){
                     if(JSON.parse(window.localStorage.getItem('user')).role===dynamicRouter[i].meta.role){
-                      dR.push(dynamicRouter[i])
-                      front=dynamicRouter[i].meta.front
+                      if(dynamicRouter[i].children){
+                        dR.push(dynamicRouter[i])
+                        front=dynamicRouter[i].meta.front
+                        console.log("11111")
+                        console.log(dR)
+                      }
                     }
                   }
                   this.$router.addRoutes(dR)
