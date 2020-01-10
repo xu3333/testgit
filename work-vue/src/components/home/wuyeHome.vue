@@ -1,12 +1,12 @@
 <template>
   <div>
-    <nav-menu/>
+    <wuye-navmenu></wuye-navmenu>
     <router-view/>
   </div>
 </template>
 
 <script>
-    import wuyeNavmenu from "./wuyeNavmenu"
+    import wuyeNavmenu from "./wuyeNavmenu";
     export default {
         name: "wuyeHome",
         components:{wuyeNavmenu}

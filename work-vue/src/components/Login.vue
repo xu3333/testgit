@@ -32,7 +32,7 @@
 
 
 <script>
-  import {myRouter,dynamicRouter} from "../router"
+  import router,{dynamicRouter} from "../router"
 
   export default {
   name: 'Login',
@@ -115,6 +115,7 @@
                   let dR=new Array()
                   let front=null
                   for(let i=0;i<dynamicRouter.length;i++){
+                    console.log("length1:"+dynamicRouter.length)
                     if(JSON.parse(window.localStorage.getItem('user')).role===dynamicRouter[i].meta.role){
                       if(dynamicRouter[i].children){
                         dR.push(dynamicRouter[i])

@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from "../src/store"
 import el from "element-ui/src/locale/lang/el";
+import th from "element-ui/src/locale/lang/th";
 // 设置反向代理，前端请求默认发送到 http://localhost:8443/api
 let axios=require('axios')
 axios.defaults.baseURL='http://localhost:8443/api'
@@ -29,8 +30,14 @@ router.beforeEach((to,from,next) =>{
   // }else {
   //   next()
   // }
+  console.log("to:"+to.fullPath)
+  console.log("from:"+from.fullPath)
+  console.log("to.meta.requireAuth"+to.meta.requireAuth)
+  console.log(router)
+  store.state.user=window.localStorage.getItem("user")
+
   if(to.meta.requireAuth){
-    console.log("to:"+to.fullPath)
+    console.log("to1:"+to.fullPath)
     if(store.state.user.username){
       next()
     }else {
@@ -43,11 +50,13 @@ router.beforeEach((to,from,next) =>{
         let dR=new Array()
         let front=null
         for(let i=0;i<dynamicRouter.length;i++){
+          console.log("length:"+dynamicRouter.length)
           if(JSON.parse(window.localStorage.getItem('user')).role===dynamicRouter[i].meta.role){
             dR.push(dynamicRouter[i])
             front=dynamicRouter[i].meta.front
           }
         }
+        this.$router.addRoutes(dR)
         let path=front+"Index"
         next({
           path:path
@@ -55,6 +64,7 @@ router.beforeEach((to,from,next) =>{
       }
     }
   }else {
+    console.log("转折失效")
     next()
   }
 })

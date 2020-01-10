@@ -35,14 +35,14 @@ export default router
 export const dynamicRouter=[
   {
     path:'/wuyeHome',
-    name:'WuyeHome',
+    name:'wuyeHome',
     component:wuyeHome,
     redirect:'/wuyeIndex',
     children:[
       {
         path:'/wuyeIndex',
         name:'AppIndex',
-        component:resolve=>require(['../components/home/AppIndex.vue'],resolve),
+        component:AppIndex,
         meta:{
           requireAuth:true,
           role:"0",

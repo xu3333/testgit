@@ -18,7 +18,7 @@
 
 <script>
   export default {
-    name: 'NavMenu',
+    name: 'wuyeNavMenu',
     data () {
       return {
         navList: [
