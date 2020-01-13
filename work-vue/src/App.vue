@@ -43,9 +43,26 @@ export default {
     //   }
     //   this.$router.addRoutes(dR)
     // }
+    judgeLogin(){
+      let dR1=new Array()
+      if(window.localStorage.getItem('user')){
+        for(let i=0;i<dynamicRouter.length;i++){
+          console.log("App length:"+dynamicRouter.length)
+          if(JSON.parse(window.localStorage.getItem('user')).role===dynamicRouter[i].meta.role){
+            dR1.push(dynamicRouter[i])
+          }
+        }
+        console.log("App1")
+        if(dR1){
+          this.$router.addRoutes(dR1)
+          console.log("App2")
+        }
+      }
+      console.log("App3")
+    }
   },
   created() {
-    // this.judgeLogin()
+    this.judgeLogin()
   }
 }
 </script>

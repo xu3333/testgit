@@ -30,11 +30,19 @@ router.beforeEach((to,from,next) =>{
   // }else {
   //   next()
   // }
+  // let dR1=new Array()
+  // for(let i=0;i<dynamicRouter.length;i++){
+  //   console.log("length:"+dynamicRouter.length)
+  //   if(JSON.parse(window.localStorage.getItem('user')).role===dynamicRouter[i].meta.role){
+  //     dR1.push(dynamicRouter[i])
+  //   }
+  // }
+  // this.$router.addRoutes(dR1)
   console.log("to:"+to.fullPath)
   console.log("from:"+from.fullPath)
-  console.log("to.meta.requireAuth"+to.meta.requireAuth)
+  console.log("to.meta.requireAuth:"+to.meta.requireAuth)
   console.log(router)
-  store.state.user=window.localStorage.getItem("user")
+  console.log(dynamicRouter)
 
   if(to.meta.requireAuth){
     console.log("to1:"+to.fullPath)
@@ -42,15 +50,15 @@ router.beforeEach((to,from,next) =>{
       next()
     }else {
       let autoLogin=JSON.parse(window.localStorage.getItem('user')).autoLogin
-      if(!autoLogin){
+      if(!autoLogin) {
         next({
-          path:'login'
+          path: 'login'
         })
       }else {
         let dR=new Array()
         let front=null
         for(let i=0;i<dynamicRouter.length;i++){
-          console.log("length:"+dynamicRouter.length)
+          console.log("main length:"+dynamicRouter.length)
           if(JSON.parse(window.localStorage.getItem('user')).role===dynamicRouter[i].meta.role){
             dR.push(dynamicRouter[i])
             front=dynamicRouter[i].meta.front

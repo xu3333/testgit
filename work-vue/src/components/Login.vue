@@ -126,8 +126,8 @@
                     }
                   }
                   this.$router.addRoutes(dR)
-                  console.log(front+'Index')
                   let path=front+"Index"
+                  console.log("path:"+path)
                   this.$router.replace({path:path})
                   // let path=this.$route.query.redirect
                   // this.$router.replace({path:path==='/'||path===undefined?'/index':path})

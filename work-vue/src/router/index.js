@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from "../components/Login"
-import AppIndex from "../components/home/AppIndex"
+import wuyeIndex from "../components/home/WuyeIndex"
 import Register from "../components/Register"
-import SecondAppIndex from "../components/home/SecondAppIndex"
+import yezhuIndex from "../components/home/YezhuIndex"
 import wuyeHome from "../components/home/wuyeHome";
 import yezhuHome from "../components/home/yezhuHome";
 
@@ -41,8 +41,8 @@ export const dynamicRouter=[
     children:[
       {
         path:'/wuyeIndex',
-        name:'AppIndex',
-        component:AppIndex,
+        name:'wuyeIndex',
+        component:wuyeIndex,
         meta:{
           requireAuth:true,
           role:"0",
@@ -64,8 +64,9 @@ export const dynamicRouter=[
     children:[
       {
         path: '/yezhuIndex',
-        name: 'SecondAppIndex',
-        component:resolve => require(['../components/home/SecondAppIndex.vue'],resolve),
+        name: 'yezhuIndex',
+        // component:resolve => require(['../components/home/YezhuIndex.vue'],resolve),
+        component: yezhuIndex,
         meta: {
           requireAuth: true,
           role:"1",
@@ -80,6 +81,7 @@ export const dynamicRouter=[
     }
   }
 ]
+
 // export default new Router({
 //   mode:'history',
 //   routes: [

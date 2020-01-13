@@ -28,7 +28,7 @@
 
 <script>
   export default {
-    name: "AppIndex",
+    name: "yezhuIndex",
     data(){
       return{
         loginForm: {
