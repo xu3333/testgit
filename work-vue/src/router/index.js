@@ -5,8 +5,8 @@ import Login from "../components/Login"
 import wuyeIndex from "../components/home/WuyeIndex"
 import Register from "../components/Register"
 import yezhuIndex from "../components/home/YezhuIndex"
-import wuyeHome from "../components/home/wuyeHome";
-import yezhuHome from "../components/home/yezhuHome";
+import wuyeHome from "../components/home/WuyeHome";
+import yezhuHome from "../components/home/YezhuHome";
 
 Vue.use(Router)
 

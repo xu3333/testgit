@@ -1,36 +1,19 @@
 <template>
     <div>
-      <el-form class="text-container" label-position="left" :rules="rules" :model="registerForm">
+      <el-form class="text-container" label-position="left" :rules="rules" :model="registerForm" ref="registerForm">
         <el-form-item>
           <h1 class="title">注册</h1>
         </el-form-item>
-        <el-form-item prop="username" label-width="80px" label="用户名：" style="text-align: left;">
-<!--          <tr>-->
-<!--            <td>-->
-<!--&lt;!&ndash;              <el-input type="text" value="用户名：" style="width: 100px" readonly="readonly"></el-input>&ndash;&gt;-->
-<!--              <h4 class="username">用户名：</h4>-->
-<!--            </td>-->
+        <el-form-item prop="username" label-width="80px" label="用户名：" style="text-align: left;" >
             <el-input type="text" v-model:value="registerForm.username" />
-<!--          </tr>-->
         </el-form-item>
         <el-form-item prop="password" label-width="80px" label="密码：" style="text-align: left;">
-<!--          <tr>-->
-<!--            <td>-->
-<!--              <h4 class="password">密码：</h4>-->
-<!--            </td>-->
-            <el-input type="text" v-model:value="registerForm.password"/>
-<!--          </tr>-->
+            <el-input type="text" v-model:value="registerForm.password" />
         </el-form-item>
         <el-form-item prop="role" label-width="80px" label="角色：" style="text-align: left;">
-<!--          <tr>-->
-<!--            <td>-->
-<!--              <h4 class="role">角色：</h4>-->
-<!--            </td>-->
             <el-select v-model="registerForm.role" style="width: 130px">
-              <el-option aria-selected="false" value="" style="color: black">请选择角色</el-option>
               <el-option v-for="(x,index) in selection" :key="x.index" :value="x.role">{{x.role}}</el-option>
             </el-select>
-<!--          </tr>-->
         </el-form-item>
         <el-form-item>
           <tr>
@@ -54,7 +37,8 @@
           registerForm:{
             username:"",
             password:"",
-            role:"物业"
+            role:"物业",
+            valid:false
           },
           selection:[
             {role:"物业",index: 0},
@@ -88,19 +72,32 @@
       methods:{
         registe(){
           let _this=this
-          this.$axios
-            .post('/registe',{
-            username:this.registerForm.username,
-            password:this.registerForm.password,
-            role:this.registerForm.role
-          })
-          .then(successResponse=>{
-            if(successResponse.data.code===200){
-              this.$router.replace({path:"/login"})
-            }else if (successResponse.data.code===400){
-              alert("wrong!")
+          console.log(this.$refs['registerForm'])
+          if(this.$refs['registerForm'].validate((valid)=>{
+            if(valid) {
+              return true
+            }else {
+              return false
             }
-          })
+          })){
+            this.$axios
+              .post('/registe',{
+                username:this.registerForm.username,
+                password:this.registerForm.password,
+                role:this.registerForm.role
+              })
+              .then(successResponse=>{
+                if(successResponse.data.code===200){
+                  this.$router.replace({path:"/login"})
+                }else if (successResponse.data.code===400){
+                  alert("wrong!")
+                }
+              })
+          }else {
+            this.registerForm.username=""
+            this.registerForm.password=""
+            alert("input wrong!")
+          }
         },
         backToLogin(){
           window.localStorage.clear()

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import wuyeNavmenu from "./wuyeNavmenu";
+    import wuyeNavmenu from "./WuyeNavmenu";
     export default {
         name: "wuyeHome",
         components:{wuyeNavmenu}

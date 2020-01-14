@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import yezhuNavmenu from "./yezhuNavmenu";
+    import yezhuNavmenu from "./YezhuNavmenu";
     export default {
         name: "yezhuHome",
         components:{yezhuNavmenu}
