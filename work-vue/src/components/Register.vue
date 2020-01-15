@@ -26,6 +26,12 @@
           </tr>
         </el-form-item>
       </el-form>
+      <span style="font-size: 14.1176px;">检验NO的反应为FeSO</span><span style="font-size: 14.1176px; position: relative; vertical-align: baseline; bottom: -0.25em;">4</span>
+      <a data-cke-saved-href="http://www.baidu.com/s?wd=%E8%BF%87%E6%B0%A7%E5%8C%96%E9%92%A0&amp;tn=SE_PcZhidaonwhc_ngpagmjz&amp;rsv_dl=gh_pc_zhidao" href="http://www.baidu.com/s?wd=%E8%BF%87%E6%B0%A7%E5%8C%96%E9%92%A0&amp;tn=SE_PcZhidaonwhc_ngpagmjz&amp;rsv_dl=gh_pc_zhidao" target="_blank"></a>
+      E<sub>4</sub>
+      <br/>
+      <i style="">E</i><sub>4&nbsp;&nbsp;</sub>
+
     </div>
 </template>
 
