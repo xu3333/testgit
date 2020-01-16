@@ -10,8 +10,8 @@
         <el-form-item prop="password" label-width="80px" label="密码：" style="text-align: left;">
             <el-input type="text" v-model:value="registerForm.password" />
         </el-form-item>
-        <el-form-item prop="role" label-width="80px" label="角色：" style="text-align: left;">
-            <el-select v-model="registerForm.role" style="width: 130px">
+        <el-form-item label-width="80px" label="角色：" style="text-align: left;">
+            <el-select v-model="other.role" style="width: 130px">
               <el-option v-for="(x,index) in selection" :key="x.index" :value="x.role">{{x.role}}</el-option>
             </el-select>
         </el-form-item>
@@ -39,10 +39,31 @@
     export default {
       name: "Register",
       data(){
+        let checkUsername=(rule,value,callback)=>{
+          if(!value.match(/[A-Za-z0-9_]+$/)){
+            console.log("username wrong")
+            callback(new Error('只允许数字、字母、下划线'))
+          }else {
+            console.log("username right")
+            callback()
+          }
+        };
+        let checkPassword=(rule,value,callback)=>{
+          if(!value.match(/[A-Za-z0-9_]+$/)){
+            console.log("password wrong")
+            callback(new Error('只允许数字、字母、下划线'))
+          }else {
+            console.log("password right")
+            callback()
+          }
+
+        };
         return{
           registerForm:{
-            username:"",
-            password:"",
+            username:'',
+            password:'',
+          },
+          other:{
             role:"物业",
             valid:false
           },
@@ -52,25 +73,12 @@
           ],
           rules:{
             username:[{
-              required:true,
-              message:"请填写用户名",
+              validator:checkUsername,
               trigger:"blur"
-            },{
-              pattern:/[A-Za-z0-9_]+$/,
-              message: "只允许数字、字母、下划线"
             }],
             password:[{
-              required:true,
-              message:"请填写密码",
+              validator:checkPassword,
               trigger:"blur"
-            },{
-              pattern:/[A-Za-z0-9_]+$/,
-              message: "只允许数字、字母、下划线"
-            }],
-            role:[{
-              required:true,
-              message:"角色不能为空",
-              trigger:"focus"
             }]
           },
         }
@@ -78,19 +86,28 @@
       methods:{
         registe(){
           let _this=this
-          console.log(this.$refs['registerForm'])
-          if(this.$refs['registerForm'].validate((valid)=>{
+          console.log(this.$refs.registerForm.validate((valid)=>{
             if(valid) {
-              return true
+              console.log(valid)
             }else {
               return false
             }
-          })){
+          }))
+          this.$refs.registerForm.validate((valid)=>{
+            if(valid) {
+              this.other.valid=valid
+              console.log(valid)
+            }else {
+              this.other.valid=valid
+              return false
+            }
+          })
+          if(this.other.valid) {
             this.$axios
               .post('/registe',{
                 username:this.registerForm.username,
                 password:this.registerForm.password,
-                role:this.registerForm.role
+                role:this.other.role
               })
               .then(successResponse=>{
                 if(successResponse.data.code===200){
@@ -102,7 +119,6 @@
           }else {
             this.registerForm.username=""
             this.registerForm.password=""
-            alert("input wrong!")
           }
         },
         backToLogin(){
