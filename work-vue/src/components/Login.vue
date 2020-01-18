@@ -20,6 +20,7 @@
               <el-checkbox id="rememberPassword" style="width: 100%;background: white" v-model="loginForm.rememberPassword">记住密码</el-checkbox>
             </td>
           </tr>
+          <h5>注意：如果不选中自动登录即登录，则刷新后会返回登录页！</h5>
         </div>
       </el-form-item>
       <el-form-item style="width: 100%">
