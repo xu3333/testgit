@@ -7,6 +7,7 @@ import Register from "../components/Register"
 import yezhuIndex from "../components/home/YezhuIndex"
 import wuyeHome from "../components/home/WuyeHome";
 import yezhuHome from "../components/home/YezhuHome";
+import LibraryIndex from "../components/library/LibraryIndex";
 
 Vue.use(Router)
 
@@ -47,6 +48,15 @@ export const dynamicRouter=[
           requireAuth:true,
           role:"0",
           front:"/wuye"
+        }
+      },
+      {
+        path: '/library',
+        name: 'Library',
+        component: LibraryIndex,
+        meta: {
+          requireAuth: true,
+          role: 0
         }
       }
     ],
