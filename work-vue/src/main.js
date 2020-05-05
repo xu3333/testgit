@@ -73,7 +73,7 @@ router.beforeEach((to,from,next) =>{
     }
   }else {
     console.log("转折失效")
-    if(to.path==='/login'){
+    if(to.path==='/login'||to.path==='/registe'){
       next()
     }else {
       next('/login')
